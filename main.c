@@ -1,6 +1,8 @@
 // Lab 2
 // Created by Wendy Vang & Venice Fan
 
+// wendy -> 
+
 int main() {
     int looper = 6;
     int selection;
