@@ -12,6 +12,8 @@
 //printnumberofrecords -> return static variable that keeps track of how many records exist in the database
 //delete -> use the free() on the pointer that keeps track of which record is this (aka the last struct created).
 
+//test
+
 void printRecords(){
     printf("\nYou have entered the Print All Records function\n\n");
 }
@@ -62,19 +64,6 @@ void numberOfRecords() {
 
 void databaseSize() {
     printf("\nYou have entered the Print Database Size function\n\n");
-}
-
-void printChanges(int selection, int *modifications) {
-    if (selection == 1) {
-        printf("\nYou have modified the database %d times so far", *modifications);
-    }
-    else if (selection == 2) {
-        (*modifications)++;
-        printf("\n%d modifications so far", *modifications);
-    }
-    else {
-        printf("Invalid selection!");
-    }
 }
 
 int main() {
