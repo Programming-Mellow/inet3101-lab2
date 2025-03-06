@@ -5,6 +5,13 @@
 
 //venice -> create struct for part (number, name, size, size metric, cost)
 
+//ideas for the methods:
+//printrecords -> we can assume that all structs are the same size. if so, then we can jump the pointer a certain amount of bytes to the next struct if we are unable to utilize an array or linked list.. let me look more into this.
+//add -> create a struct and then prompt user to fill out the data. assign the associated parts to the correct parts of the struct. once added, update static variable of how many records in the database. use malloc() & pointers to ensure that the struct has life outside of the function. if no structs exist (aka number of records = 0) then assign beginning of database pointer to the newly created struct. if it isn't the first struct created, assign a "which record is this" pointer to it.
+//printsizeofdatabase -> return sizeof(struct) * number of records
+//printnumberofrecords -> return static variable that keeps track of how many records exist in the database
+//delete -> use the free() on the pointer that keeps track of which record is this (aka the last struct created).
+
 void printRecords(){
     printf("\nYou have entered the Print All Records function\n\n");
 }
@@ -76,9 +83,7 @@ int main() {
     int changesSelection;
     int modifications = 0;
 
-    // Display the menu for the user to make their selection and to call correct methods for the user to be able to make changes or view the database.
     while (looper <= 6){
-        //test
         printf("\n\nParts Inventory Manager\n\n");
         printf("1. Print All Records\n");
         printf("2. Add a Record\n");
