@@ -1,7 +1,74 @@
 // Lab 2
 // Created by Wendy Vang & Venice Fan
 
-// wendy -> 
+// wendy -> create own realloc() function for extra credit. NO linked list!
+
+//venice -> create struct for part (number, name, size, size metric, cost)
+
+void printRecords(){
+    printf("\nYou have entered the Print All Records function\n\n");
+}
+
+void addRecord() {
+    int parts = 0;
+    int number;
+    char name[50];
+    float size;
+    char metric[10];
+    float cost;
+
+    while (parts <= 4) {
+        printf("\nPlease enter in your selection\n");
+        if (parts == 0) {
+            printf("\nINTEGER ONLY:\nPart Number -> ");
+            scanf("%d", &number);
+        }   
+        else if (parts == 1) {
+            printf("\nSTRING ONLY:\nPart Name -> ");
+            scanf(" %[^\n]", name);
+        }
+        else if (parts == 2) {
+            printf("\nFLOAT ONLY:\nPart Size -> ");
+            scanf("%f", &size);
+        }
+        else if (parts == 3) {
+            printf("\nSTRING ONLY:\nPart Size Metric -> ");
+            scanf(" %[^\n]", metric);
+        }
+        else {
+            printf("\nFLOAT ONLY:\nPart Cost -> ");
+            scanf("%f", &cost);
+        }
+        parts++;
+    }
+
+    printf("\nYou entered\n  Part Number = %d\n  Part Name = '%s'\n  Part Size = %f\n  Part Size Metric = '%s'\n  Part Cost = $%f", number, name, size, metric, cost);
+}
+
+void deleteRecord() {
+    printf("\nYou have entered the Delete Last Record function\n\n");
+}
+
+void numberOfRecords() {
+    printf("\nYou have entered the Print Number of Records function\n\n");
+}
+
+void databaseSize() {
+    printf("\nYou have entered the Print Database Size function\n\n");
+}
+
+void printChanges(int selection, int *modifications) {
+    if (selection == 1) {
+        printf("\nYou have modified the database %d times so far", *modifications);
+    }
+    else if (selection == 2) {
+        (*modifications)++;
+        printf("\n%d modifications so far", *modifications);
+    }
+    else {
+        printf("Invalid selection!");
+    }
+}
 
 int main() {
     int looper = 6;
@@ -18,8 +85,7 @@ int main() {
         printf("3. Delete a Record\n");
         printf("4. Print Number of Records\n");
         printf("5. Print Database Size\n");
-        printf("6. Print Number of Changes\n");
-        printf("7. Exit\n\n");
+        printf("6. Exit\n\n");
 
         printf("Please enter your selection: ");
         scanf("%d", &selection);
@@ -47,15 +113,9 @@ int main() {
                 break;
 
             case 6:
-                printf("\nYou have selected the 'Print Number of Changes' function, would you like to:\n1. Print out the number of changes to the database (Type '1')\n2. Increment the changes to the database by 1 (Type '2')\n\n");
-                scanf("%d", &changesSelection);
-                printChanges(changesSelection, &modifications);
-                break;
-
-            case 7:
-                printf("\n\nExiting Now...\n\n");
-                looper = selection;
-                break;
+            printf("\n\nExiting Now...\n\n");
+            looper = selection;
+            break;
 
             default:
                 printf("\nInvalid option! Please select a valid command.");
