@@ -88,14 +88,19 @@ void addRecord() {
 void deleteRecord() {
     printf("\nYou have entered the Delete Last Record function\n\n");
 
-    if (recordCount == 0) {
-        printf("There are no records in the database.\n");
+    recordCount--;
+    
+    struct Part *newDatabase = malloc(recordCount * sizeof(struct Part));
+    
+    for (int i = 0; i < recordCount; i++) {
+        newDatabase[i] = database[i];
     }
 
-    recordCount--;
-
     free(database);
-    database = 0;
+
+    database = newDatabase;
+
+    printf("\nDatabase now contains %d records.\n", recordCount);
 }
 
 void numberOfRecords() {
