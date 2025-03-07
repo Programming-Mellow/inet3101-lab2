@@ -19,7 +19,7 @@ The menu function is used to display to the users, within the terminal, the foll
 4. Print the number of records
 5. Print database size
 6. Exit
-test
+
 The users can then select one of the following numbers to run certain tasks. Once the 6 is pressed, the menu exits
 
 **Each function defined with:**
