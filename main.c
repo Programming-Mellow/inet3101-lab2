@@ -114,8 +114,6 @@ int databaseSize() {
 int main() {
     int looper = 6;
     int selection;
-    int changesSelection;
-    int modifications = 0;
 
     while (looper <= 6){
         printf("\n\nParts Inventory Manager\n\n");
