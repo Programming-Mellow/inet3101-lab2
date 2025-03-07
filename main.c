@@ -31,6 +31,11 @@ struct Part *beginning = 0;
 
 void printRecords() {
     printf("\nYou have entered the Print All Records function\n\n");
+
+    if (recordCount == 0) {
+        printf("\nThere is nothing to print.");
+    }
+
     struct Part *jump = beginning;
     for (int i = 0; i < recordCount; i++) {
         printf("Part Number: %d\n", jump->number);
@@ -150,10 +155,10 @@ int main() {
                 break;
 
             case 6:
-            printf("\n\nExiting Now...\n\n");
-            looper = selection;
-            free(database);
-            break;
+                printf("\n\nExiting Now...\n\n");
+                looper = selection;
+                free(database);
+                return 1;
 
             default:
                 printf("\nInvalid option! Please select a valid command.");
