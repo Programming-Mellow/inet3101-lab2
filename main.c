@@ -1,9 +1,8 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 // Lab 2
 // Created by Wendy Vang & Venice Fan
-
-// wendy -> create own realloc() function for extra credit. NO linked list!
-
-//venice -> create struct for part (number, name, size, size metric, cost)
 
 //ideas for the methods:
 //printrecords -> we can assume that all structs are the same size. if so, then we can jump the pointer a certain amount of bytes to the next struct if we are unable to utilize an array or linked list.. let me look more into this. (wendy will work on this)
@@ -24,11 +23,24 @@ struct Part {
 
 static int recordCount = 0;
 
-//ptr to struct Part
+//ptr to latest struct Part
 struct Part *database = 0;
+
+//ptr to start of database
+struct Part *beginning = 0;
 
 void printRecords(){
     printf("\nYou have entered the Print All Records function\n\n");
+    struct Part *jump = beginning;
+    for (int i = 0; i < recordCount; i++) {
+        printf("Part Number: %d\n", jump->number);
+        printf("Part Name: %s\n", jump->name);
+        printf("Part Size: %.2f\n", jump->size);
+        printf("Part Size Metric: %s\n", jump->metric);
+        printf("Part Cost: %.2f\n\n", jump->cost);
+        //utilizing pointer arithmetic to jump from one entry to another. cast the pointer from a struct pointer to a char pointer so byte arithmetic stuff can be performed.
+        jump = (struct Part *)((char *)jump + sizeof(struct Part));
+    }
 }
 
 void addRecord() {
@@ -56,7 +68,7 @@ void addRecord() {
     printf("\nYou entered\n  Part Number = %d\n  Part Name = '%s'\n  Part Size = %f\n  Part Size Metric = '%s'\n  Part Cost = $%f", newPart.number, newPart.name, newPart.size, newPart.metric, newPart.cost);
 
     //create new ptr and allocate space and assign address to the allocated memory
-    struct Part *newDatabase = malloc(recordCount * sizeof(struct Part));
+    struct Part *newDatabase = realloc(database, recordCount * sizeof(struct Part));
 
     for (int i = 0; i < recordCount - 1; i++) {
         newDatabase[i] = database[i];
@@ -65,9 +77,11 @@ void addRecord() {
     //insert newPart into the end of the new database
     newDatabase[recordCount - 1] = newPart;
 
-    free(database);
-
     database = newDatabase;
+
+    if (recordCount == 1) {
+        beginning = database;
+    }
 
 }
 
@@ -80,25 +94,21 @@ void deleteRecord() {
 
     recordCount--;
 
-    if (recordCount == 0) {
-        free(database);
-        database = 0;
-    }
+    free(database);
+    database = 0;
 }
 
-int numberOfRecords() {
-    return recordCount;
+void numberOfRecords() {
+    printf(recordCount);
 }
 
-int databaseSize() {
-    return sizeof(struct Part) * recordCount;
+void databaseSize() {
+    printf(sizeof(struct Part) * recordCount);
 }
 
 int main() {
     int looper = 6;
     int selection;
-    int changesSelection;
-    int modifications = 0;
 
     while (looper <= 6){
         printf("\n\nParts Inventory Manager\n\n");
