@@ -12,52 +12,79 @@
 //printnumberofrecords -> return static variable that keeps track of how many records exist in the database (venice will work on this)
 //delete -> use the free() on the pointer that keeps track of which record is this (aka the last struct created). (this is up for dibs)
 
-void printRecords(){
-    printf("\nYou have entered the Print All Records function\n\n");
-}
 
-void addRecord() {
-    int parts = 0;
+//struct 
+struct Part {
     int number;
     char name[50];
     float size;
     char metric[10];
     float cost;
+};
 
-    while (parts <= 4) {
-        printf("\nPlease enter in your selection\n");
-        if (parts == 0) {
-            printf("\nINTEGER ONLY:\nPart Number -> ");
-            scanf("%d", &number);
-        }   
-        else if (parts == 1) {
-            printf("\nSTRING ONLY:\nPart Name -> ");
-            scanf(" %[^\n]", name);
-        }
-        else if (parts == 2) {
-            printf("\nFLOAT ONLY:\nPart Size -> ");
-            scanf("%f", &size);
-        }
-        else if (parts == 3) {
-            printf("\nSTRING ONLY:\nPart Size Metric -> ");
-            scanf(" %[^\n]", metric);
-        }
-        else {
-            printf("\nFLOAT ONLY:\nPart Cost -> ");
-            scanf("%f", &cost);
-        }
-        parts++;
+static int recordCount = 0;
+
+struct Part *database = 0;
+
+void printRecords(){
+    printf("\nYou have entered the Print All Records function\n\n");
+}
+
+void addRecord() {
+    struct Part newPart;
+
+    printf("\nPlease enter in your selection\n");
+    
+    printf("\nINTEGER ONLY:\nPart Number -> ");
+    scanf("%d", &newPart.number);
+    
+    printf("\nSTRING ONLY:\nPart Name -> ");
+    scanf(" %[^\n]", newPart.name);
+    
+    printf("\nFLOAT ONLY:\nPart Size -> ");
+    scanf("%f", &newPart.size);
+    
+    printf("\nSTRING ONLY:\nPart Size Metric -> ");
+    scanf(" %[^\n]", newPart.metric);
+    
+    printf("\nFLOAT ONLY:\nPart Cost -> ");
+    scanf("%f", &newPart.cost);
+    
+    recordCount++;
+
+    printf("\nYou entered\n  Part Number = %d\n  Part Name = '%s'\n  Part Size = %f\n  Part Size Metric = '%s'\n  Part Cost = $%f", newPart.number, newPart.name, newPart.size, newPart.metric, newPart.cost);
+
+    struct Part *newDatabase = malloc(recordCount * sizeof(struct Part));
+
+    for (int i = 0; i < recordCount - 1; i++) {
+        newDatabase[i] = database[i];
     }
 
-    printf("\nYou entered\n  Part Number = %d\n  Part Name = '%s'\n  Part Size = %f\n  Part Size Metric = '%s'\n  Part Cost = $%f", number, name, size, metric, cost);
+    newDatabase[recordCount - 1] = newPart;
+
+    free(database);
+
+    database = newDatabase;
+
 }
 
 void deleteRecord() {
     printf("\nYou have entered the Delete Last Record function\n\n");
+
+    if (recordCount == 0) {
+        printf("There are no records in the database.\n");
+    }
+
+    recordCount--;
+
+    if (recordCount == 0) {
+        free(database);
+        database = 0;
+    }
 }
 
 void numberOfRecords() {
-    printf("\nYou have entered the Print Number of Records function\n\n");
+    return recordCount;
 }
 
 void databaseSize() {
