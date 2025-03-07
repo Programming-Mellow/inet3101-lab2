@@ -29,7 +29,7 @@ struct Part *database = 0;
 //ptr to start of database
 struct Part *beginning = 0;
 
-void printRecords(){
+void printRecords() {
     printf("\nYou have entered the Print All Records function\n\n");
     struct Part *jump = beginning;
     for (int i = 0; i < recordCount; i++) {
@@ -99,11 +99,11 @@ void deleteRecord() {
 }
 
 void numberOfRecords() {
-    printf(recordCount);
+    printf("%d\n", recordCount);
 }
 
 void databaseSize() {
-    printf(sizeof(struct Part) * recordCount);
+    printf("%zu\n", sizeof(struct Part) * recordCount);
 }
 
 int main() {
