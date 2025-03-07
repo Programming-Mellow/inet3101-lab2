@@ -28,9 +28,9 @@ The users can then select one of the following numbers to run certain tasks. Onc
 - Input type(s) (if any):
 None
 - Output type:
-Prints the message: “You have entered the Print all records function”
+Prints all of the records created in the program.
 - Algorithm description:
-There is no actual algorithm. The message is a placeholder since the actual data has not been implemented yet.
+Utilizes pointer arithmetic to jump from one database to another, once the pointer lands on a valid entry, print out the associated parts of the struct.
 
 2. addRecord()
 - Input type(s) (if any):
@@ -62,7 +62,7 @@ None
 - Output type: “You have entered the Print database size function”
 Prints the message:
 - Algorithm description: 
-There is no actual algorithm. The message is a placeholder since there is no functionality to do anything.
+Prints out the size of the entries currently in the database by calculating the size of the struct and multiplying it by the amount of records in the database.
 
 6. main()
 - Input type(s) (if any):
@@ -74,4 +74,6 @@ Displays a menu in the terminal in a while loop. Reads user input and calls the 
 
 **Listing of files required and what type they are (.h header, .c c code, etc..):**
 
-lab2.c
+main.c -> .c code
+#include <stdlib.h> -> .h header
+#include <stdio.h> -> .h header
