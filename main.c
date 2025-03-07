@@ -137,6 +137,7 @@ int main() {
             case 6:
             printf("\n\nExiting Now...\n\n");
             looper = selection;
+            free(database);
             break;
 
             default:
