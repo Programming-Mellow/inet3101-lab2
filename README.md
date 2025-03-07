@@ -20,7 +20,7 @@ The menu function is used to display to the users, within the terminal, the foll
 5. Print database size
 6. Exit
 
-The users can then select one of the following numbers to run certain tasks. Once the 6 is pressed, the menu exits
+The users can then select one of the following numbers to run certain tasks. Once 6 is entered, the menu exits.
 
 **Each function defined with:**
 
@@ -30,7 +30,7 @@ None
 - Output type:
 Prints all of the records created in the program.
 - Algorithm description:
-Utilizes pointer arithmetic to jump from one database to another, once the pointer lands on a valid entry, print out the associated parts of the struct.
+Utilizes pointer arithmetic to jump from one entry to another, once the pointer lands on another entry, print out the associated parts of the struct.
 
 2. addRecord()
 - Input type(s) (if any):
@@ -38,37 +38,37 @@ User inputs (integers, string and float values)
 - Output type:
 Prints out the information is the user inputs.
 - Algorithm description:
-Tells the user to input the part number, part name, part size, part size metric and part cost.Scanner is used to read the user's inputs. Displays in terminal the user's entered values. The code allocates memory dymanically for new database in order to store the new record. Then copies the existing reccords into the new allocated space. The new record is inserted into the end of the database. The database pionter is then freed of old memory space.
+Tells the user to input the part number, part name, part size, part size metric and part cost. Scanner is used to read the user's inputs. Displays in terminal the user's entered values. The code allocates memory dymanically for new database in order to store the new record. Then copies the existing reccords into the new allocated space. The new record is inserted into the end of the database. The database pionter is then freed of old memory space through realloc(). 
 
 3. deleteRecord()
 - Input type(s) (if any):
 None
 - Output type:
-Prints the message: “You have entered the Delete Last Record function.” Also prints the updated number of records in the database.
+Prints the updated number of records in the database after deleting the latest entry.
 - Algorithm description: 
-The code prints a message that indicates that the function was called. recordCount is decremented to reflect the last removed record. Realloc is used to resize the database dynamically. The existing records, not including the removed one, gets copied into newly allocated memory. The updated database pointer is used to reflect new size. Also prints the number of existing records.
+recordCount is decremented to reflect the last removed record. Realloc is used to resize the database dynamically. The existing records, not including the removed one, gets copied into newly allocated memory. The updated database pointer is used to reflect new size. Also prints the number of existing records.
 
 4. numberOfRecords()
 - Input type(s) (if any):
 None
 - Output type: 
-Returns the total number of records that is stored within the database.
+Prints the message: "There are # entries in the database."
 - Algorithm description: 
-The function returns the value of recordCount.
+The function prints the value of recordCount.
 
 5. databaseSize()
 - Input type(s) (if any):
 None
-- Output type: “You have entered the Print database size function”
-Prints the message:
+- Output type:
+Prints the message: "The database size is currently # bytes."
 - Algorithm description: 
-Prints out the size of the entries currently in the database by calculating the size of the struct and multiplying it by the amount of records in the database.
+Prints out the size of the entries currently in the database by calculating the size of the struct Part and multiplying it by the amount of records in the database with the value recordCount.
 
 6. main()
 - Input type(s) (if any):
 User selection (integer)
 - Output type:
-Depending on the integer the user types, a certain function will be called.
+Depending on the integer the user inputs, a certain function will be called.
 - Algorithm description:
 Displays a menu in the terminal in a while loop. Reads user input and calls the corresponding function using a case/switch statement. If user inserts invalid input, a error message will appear and prompts the user to make a new selection. Then exits when the user inputs 6.
 

@@ -22,21 +22,20 @@ struct Part *database = 0;
 struct Part *beginning = 0;
 
 void printRecords() {
-    printf("\nYou have entered the Print All Records function\n\n");
-
-    if (recordCount == 0) {
-        printf("\nThere is nothing to print.");
+    if (recordCount <= 0) {
+        printf("\nThere is nothing to print.\n");
     }
 
     //assign the jump pointer to the beginning of the database
     struct Part *jump = beginning;
     for (int i = 0; i < recordCount; i++) {
-        printf("Part Number: %d\n", jump->number);
+        printf("\nPart Number: %d\n", jump->number);
         printf("Part Name: %s\n", jump->name);
         printf("Part Size: %.2f\n", jump->size);
         printf("Part Size Metric: %s\n", jump->metric);
-        printf("Part Cost: %.2f\n\n", jump->cost);
-        //utilizing pointer arithmetic to jump from one entry to another. cast the pointer from a struct pointer to a char pointer so byte arithmetic stuff can be performed.
+        printf("Part Cost: %.2f\n", jump->cost);
+
+        //utilizing pointer arithmetic to jump from one entry to another. cast the pointer from a struct pointer to a char pointer so byte arithmetic stuff can be performed. we can assume that the structs are stored next to each other in memory. yay CSCI 2021 knowledge!
         jump = (struct Part *)((char *)jump + sizeof(struct Part));
     }
 }
@@ -77,6 +76,7 @@ void addRecord() {
 
     database = newDatabase;
 
+    //set beginning ptr if we just newly created the database
     if (recordCount == 1) {
         beginning = database;
     }
@@ -84,8 +84,6 @@ void addRecord() {
 }
 
 void deleteRecord() {
-    printf("\nYou have entered the Delete Last Record function\n\n");
-
     recordCount--;
     
     struct Part *newDatabase = realloc(database, recordCount * sizeof(struct Part));
@@ -100,11 +98,11 @@ void deleteRecord() {
 }
 
 void numberOfRecords() {
-    printf("%d\n", recordCount);
+    printf("There are %d entries in the database.\n", recordCount);
 }
 
 void databaseSize() {
-    printf("%zu\n", sizeof(struct Part) * recordCount);
+    printf("The database size is currently %zu bytes.\n", (sizeof(struct Part) * recordCount));
 }
 
 int main() {
@@ -115,7 +113,7 @@ int main() {
         printf("\n\nParts Inventory Manager\n\n");
         printf("1. Print All Records\n");
         printf("2. Add a Record\n");
-        printf("3. Delete a Record\n");
+        printf("3. Delete the Last Record\n");
         printf("4. Print Number of Records\n");
         printf("5. Print Database Size\n");
         printf("6. Exit\n\n");
