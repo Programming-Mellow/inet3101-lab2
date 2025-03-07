@@ -24,11 +24,24 @@ struct Part {
 
 static int recordCount = 0;
 
-//ptr to struct Part
+//ptr to latest struct Part
 struct Part *database = 0;
+
+//ptr to start of database
+struct Part *beginning = 0;
 
 void printRecords(){
     printf("\nYou have entered the Print All Records function\n\n");
+    struct Part *jump = beginning;
+    for (int i = 0; i < recordCount; i++) {
+        printf("Part Number: %d\n", jump->number);
+        printf("Part Name: %s\n", jump->name);
+        printf("Part Size: %.2f\n", jump->size);
+        printf("Part Size Metric: %s\n", jump->metric);
+        printf("Part Cost: %.2f\n\n", jump->cost);
+        //utilizing pointer arithmetic to jump from one entry to another. cast the pointer from a struct pointer to a char pointer so byte arithmetic stuff can be performed.
+        jump = (struct Part *)((char *)jump + sizeof(struct Part));
+    }
 }
 
 void addRecord() {
@@ -68,6 +81,10 @@ void addRecord() {
     free(database);
 
     database = newDatabase;
+
+    if (recordCount == 1) {
+        beginning = database;
+    }
 
 }
 
