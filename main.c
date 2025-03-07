@@ -28,6 +28,7 @@ void printRecords() {
         printf("\nThere is nothing to print.");
     }
 
+    //assign the jump pointer to the beginning of the database
     struct Part *jump = beginning;
     for (int i = 0; i < recordCount; i++) {
         printf("Part Number: %d\n", jump->number);
