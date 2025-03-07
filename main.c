@@ -94,10 +94,8 @@ void deleteRecord() {
 
     recordCount--;
 
-    if (recordCount == 0) {
-        free(database);
-        database = 0;
-    }
+    free(database);
+    database = 0;
 }
 
 void numberOfRecords() {
