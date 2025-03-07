@@ -95,13 +95,11 @@ void deleteRecord() {
 
     recordCount--;
     
-    struct Part *newDatabase = malloc(recordCount * sizeof(struct Part));
+    struct Part *newDatabase = realloc(database, recordCount * sizeof(struct Part));
     
     for (int i = 0; i < recordCount; i++) {
         newDatabase[i] = database[i];
     }
-
-    free(database);
 
     database = newDatabase;
 
