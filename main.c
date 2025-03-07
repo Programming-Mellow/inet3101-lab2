@@ -24,6 +24,7 @@ struct Part {
 
 static int recordCount = 0;
 
+//ptr to struct Part
 struct Part *database = 0;
 
 void printRecords(){
@@ -54,12 +55,14 @@ void addRecord() {
 
     printf("\nYou entered\n  Part Number = %d\n  Part Name = '%s'\n  Part Size = %f\n  Part Size Metric = '%s'\n  Part Cost = $%f", newPart.number, newPart.name, newPart.size, newPart.metric, newPart.cost);
 
+    //create new ptr and allocate space and assign address to the allocated memory
     struct Part *newDatabase = malloc(recordCount * sizeof(struct Part));
 
     for (int i = 0; i < recordCount - 1; i++) {
         newDatabase[i] = database[i];
     }
 
+    //insert newPart into the end of the new database
     newDatabase[recordCount - 1] = newPart;
 
     free(database);
