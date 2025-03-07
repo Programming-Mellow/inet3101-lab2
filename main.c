@@ -100,12 +100,12 @@ void deleteRecord() {
     }
 }
 
-int numberOfRecords() {
-    return recordCount;
+void numberOfRecords() {
+    printf(recordCount);
 }
 
-int databaseSize() {
-    return sizeof(struct Part) * recordCount;
+void databaseSize() {
+    printf(sizeof(struct Part) * recordCount);
 }
 
 int main() {
