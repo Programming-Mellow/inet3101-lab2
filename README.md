@@ -44,9 +44,9 @@ Tells the user to input the part number, part name, part size, part size metric 
 - Input type(s) (if any):
 None
 - Output type:
-Prints the message: “You have entered the delete last record function”
+Prints the message: “You have entered the Delete Last Record function.” Also prints the updated number of records in the database.
 - Algorithm description: 
-There is no actual algorithm. The message is a placeholder since there is no functionality to do anything.
+The code prints a message that indicates that the function was called. recordCount is decremented to reflect the last removed record. Realloc is used to resize the database dynamically. The existing records, not including the removed one, gets copied into newly allocated memory. The updated database pointer is used to reflect new size. Also prints the number of existing records.
 
 4. numberOfRecords()
 - Input type(s) (if any):
